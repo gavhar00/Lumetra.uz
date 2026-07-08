@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-primary: #818CF8;      /* Soft Indigo neon border/details, eye-safe */
+  --color-primary-dark: #6366F1;
+  --color-secondary: #38BDF8;    /* Dynamic soft cyan accent */
+  --color-accent: #F472B6;       /* Soft pink highlight */
+  --color-bg-light: #060913;     /* Deep Cosmic Blue-slate base - extremely gentle on eyes */
+  --color-bg-dark: #020308;
+  --color-text-primary: #F8FAFC;    /* High-contrast soft slate-50 */
+  --color-text-secondary: #94A3B8;  /* Muted comfortable slate-gray */
+}
+
+@layer base {
+  body {
+    @apply bg-bg-light text-text-primary font-sans selection:bg-primary/20 selection:text-primary leading-normal antialiased;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 55%),
+      radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.08) 0px, transparent 55%),
+      radial-gradient(at 50% 50%, rgba(244, 114, 182, 0.05) 0px, transparent 60%);
+    background-attachment: fixed;
+  }
+
+  /* Custom Clean Scrollbar for Dark Theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(2, 3, 8, 0.3);
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-800/80 rounded-full hover:bg-slate-700 transition-colors;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-slate-900/45 backdrop-blur-2xl border border-white/10 shadow-[0_12px_45px_-12px_rgba(0,0,0,0.6)] focus-within:border-primary/30 hover:border-white/15 transition-all duration-300;
+  }
+  
+  .glass-dark {
+    @apply bg-slate-950/90 backdrop-blur-2xl border border-white/5 shadow-[0_24px_60px_rgba(0,0,0,0.85)];
+  }
+
+  .btn-primary {
+    @apply px-8 py-4 bg-gradient-to-r from-primary-dark via-indigo-600 to-indigo-700 text-white font-semibold rounded-2xl 
+           shadow-[0_8px_30px_rgba(99,102,241,0.25)] hover:shadow-[0_8px_35px_rgba(99,102,241,0.45)] hover:-translate-y-0.5 transition-all duration-300 active:scale-95 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-4 bg-white/5 backdrop-blur-md text-text-primary font-semibold rounded-2xl border border-white/10
+           hover:border-primary/40 hover:bg-white/10 hover:text-primary hover:shadow-[0_8px_25px_rgba(99,102,241,0.15)] transition-all duration-300 active:scale-95 cursor-pointer;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_-15px_rgba(99,102,241,0.25)] hover:border-primary/25;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 35px rgba(99, 102, 241, 0.25);
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.glow-heavy {
+  filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.4));
+}
